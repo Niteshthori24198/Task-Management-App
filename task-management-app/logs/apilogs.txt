@@ -1,6 +1,0 @@
-2023-10-08T10:28:02.855Z -url GET /todotask/getall - Status: 200, Content Length: 0 bytes
-2023-10-08T10:28:11.326Z -url GET /todotask/getall - Status: 200, Content Length: 0 bytes
-2023-10-08T10:28:12.438Z -url GET /todotask/getall - Status: 200, Content Length: 0 bytes
-2023-10-08T10:28:15.530Z -url GET /todotask/getall - Status: 200, Content Length: 0 bytes
-2023-10-08T10:28:17.974Z -url GET /todotask/getall - Status: 200, Content Length: 0 bytes
-2023-10-08T10:29:43.638Z -url GET /todotask/getall - Status: 200, Content Length: 0 bytes
