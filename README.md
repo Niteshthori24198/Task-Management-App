@@ -98,6 +98,4 @@ API requests and responses is being logged into a apilogs.txt file using which w
 
 Rate limiting is applied to restrict the number of requests from clients within a specified time period so our server won't get overloaded by too many requests.
 
-## Testing : - Postman collection : - ** https://api.postman.com/collections/25436810-49e7f8b2-3653-46f8-8601-38793b182104?access_key=PMAT-01HC7RE4FVR72T7TF0N6RDN9HZ **
-
 <h1 align="center">Thank You.💖</h1>
