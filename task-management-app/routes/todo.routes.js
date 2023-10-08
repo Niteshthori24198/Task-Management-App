@@ -12,7 +12,7 @@ const {
 } = require('../controller/todo.controller')
 
 
-app.use(auth);
+todoRouter.use(auth);
 
 // All routes are protected so login required to access them.
 

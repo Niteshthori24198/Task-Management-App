@@ -4,7 +4,6 @@ require('dotenv').config();
 const cors = require('cors');
 
 const { connection } = require("./DB/db");
-const { auth } = require('./middleware/auth.middleware');
 const { userRouter } = require('./routes/user.routes');
 const { todoRouter } = require('./routes/todo.routes');
 
@@ -28,7 +27,6 @@ app.use(logger);
 
 app.use("/user", userRouter);
 
-app.use(auth);
 app.use("/todotask", todoRouter);
 
 

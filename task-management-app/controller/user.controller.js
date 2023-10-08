@@ -12,6 +12,10 @@ const newUserRegister = async (req, res) => {
 
     let { email, name, password } = req.body;
 
+    if (!name || !email || !password) {
+        return res.status(400).send({ "error": "Kindly provide all the required fields." });
+    }
+
     name = name.trim();
     email = email.trim();
     password = password.trim();
@@ -52,6 +56,10 @@ const userLogin = async (req, res) => {
 
     let { email, password } = req.body;
 
+    if (!email || !password) {
+        return res.status(400).send({ "error": "Kindly provide all the required fields." });
+    }
+
     email = email.trim();
     password = password.trim();
 
@@ -65,22 +73,21 @@ const userLogin = async (req, res) => {
 
         if (user) {
 
-            bcrypt.compare(password, user.password, (err, result) => {
+            const hash = bcrypt.compareSync(password, user.password);
 
-                if (err) {
+            if (hash) {
 
-                    return res.status(400).send({
-                        "msg": "Invaid Password detected. Kindly provide correct password."
-                    })
+                return res.status(200).send({
+                    "msg": "Login Successfull",
+                    "token": jwt.sign({ userId: user._id }, process.env.SecretKey, { expiresIn: '24h' })
+                })
 
-                } else {
+            } else {
+                return res.status(400).send({
+                    "msg": "Invaid Password detected. Kindly provide correct password."
+                })
 
-                    return res.status(200).send({
-                        "msg": "Login Successfull",
-                        "token": jwt.sign({ userId: user._id }, process.env.SecretKey, { expiresIn: '24h' })
-                    })
-                }
-            })
+            }
         } else {
 
             return res.status(400).send({
@@ -122,7 +129,7 @@ const userProfileUpdate = async (req, res) => {
 
     const { userId } = req.body;
 
-    if(req.body.password){
+    if (req.body.password) {
         req.body.password = bcrypt.hashSync(req.body.password, 6);
     }
 
