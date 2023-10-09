@@ -3,6 +3,15 @@ const jwt = require('jsonwebtoken');
 
 const { BlacklistModel } = require('../model/blacklist.model')
 
+/**
+ * Authenticate the user using the provided token.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @return {Promise<void>} - No return value.
+ */
+
 const auth = async (req, res, next) => {
 
     if (!req.headers['authorization']) {
@@ -19,6 +28,8 @@ const auth = async (req, res, next) => {
 
         try {
 
+            // checking whether the token provided by user is blacklisted or not.
+
             const isTokenBlacklisted = await BlacklistModel.findOne({ token: token })
 
             if (isTokenBlacklisted) {
@@ -27,11 +38,13 @@ const auth = async (req, res, next) => {
                 })
             }
 
+            // verifying token to verify users identity
+
             const decoded = jwt.verify(token, process.env.SecretKey);
 
             if (decoded) {
                 req.body.userId = decoded.userId;
-                next();
+                next(); // use authenticated successfully
             } else {
                 return res.status(400).send({
                     "msg": "Kindly Login First to Access Protected Route !"

@@ -1,6 +1,14 @@
 const { TodoModel } = require('../model/todo.model');
 const mongoose = require('mongoose')
 
+/**
+ * Adds a new todo task to the database after user is being authenticated from auth middleware.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @return {Object} The response object containing the status and message.
+ */
+
 const addTodoTask = async (req, res) => {
 
     if (req.body.createdDate === undefined) {
@@ -26,6 +34,14 @@ const addTodoTask = async (req, res) => {
 }
 
 
+/**
+ * Retrieves a single todo task by taking ID as params.
+ *
+ * @param {object} req - The request object.
+ * @param {object} res - The response object.
+ * @return {object} The todo task.
+ */
+
 const getOneTodoTask = async (req, res) => {
 
     const { ID } = req.params;
@@ -49,6 +65,17 @@ const getOneTodoTask = async (req, res) => {
     }
 }
 
+
+/**
+ * Retrieves all the todo tasks for a given user.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} req.body - The body of the request.
+ * @param {string} req.body.userId - The user ID.
+ * @param {Object} res - The response object.
+ * @returns {Object} An array of todo tasks for the user.
+ */
+
 const getAllTodoTask = async (req, res) => {
 
     const userId = req.body.userId;
@@ -64,6 +91,14 @@ const getAllTodoTask = async (req, res) => {
     }
 }
 
+
+/**
+ * Updates a todo task by taking ID as params and authencation of correct user.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @return {Promise} A promise that resolves to nothing.
+ */
 
 const updateTodoTask = async (req, res) => {
 
@@ -115,6 +150,14 @@ const updateTodoTask = async (req, res) => {
     }
 }
 
+
+/**
+ * Delete a todo task by taking ID as params and validating the user.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @return {Object} The response containing the success or error message.
+ */
 
 const deleteTodoTask = async (req, res) => {
 

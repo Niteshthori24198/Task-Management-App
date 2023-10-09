@@ -5,6 +5,14 @@ const path = require('path');
 
 const logFilePath = path.join(__dirname, '../logs/apilogs.txt');
 
+/**
+ * This function takes request, response and next as parameters and logs the request and response to a file.
+ * @param {*} req request object of expressjs
+ * @param {*} res response object of expressjs
+ * @param {*} next next function of expressjs for further action in middleware chaining
+ */
+
+
 function logger(req, res, next) {
     try {
 

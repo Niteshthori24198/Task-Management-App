@@ -8,6 +8,14 @@ const { UserModel } = require("../model/user.model");
 const { BlacklistModel } = require('../model/blacklist.model');
 const { emailValidator, nameValidator, passwordValidator } = require('./validation');
 
+
+/**
+ * Registers a new user by taking basic information and validate them { using emailvalidator , namevalidator and passwordvalidator function } then register it.
+ *
+ * @param {Object} req - The HTTP request object.
+ * @param {Object} res - The HTTP response object.
+ * @return {Promise} A promise that resolves to the result of the registration process.
+ */
 const newUserRegister = async (req, res) => {
 
     let { email, name, password } = req.body;
@@ -51,6 +59,13 @@ const newUserRegister = async (req, res) => {
     });
 }
 
+/**
+ * Authenticates user login credentials and generate JWT token for accessing protected routes after verifying correct email and password.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @return {Object} The response object with appropriate status and message.
+ */
 
 const userLogin = async (req, res) => {
 
@@ -185,6 +200,13 @@ const userProfileDelete = async (req, res) => {
     }
 }
 
+/**
+ * Logs out the user by invalidating the authentication token and put token in blacklist schema.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @return {Promise} A promise that resolves to a JSON response.
+ */
 
 const userLogout = async (req, res) => {
 
